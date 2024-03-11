@@ -3,18 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <h1>ROCK PAPER SCISSORS GAME</h1>
+    <p>Played in the console log</p>
     <script>
+
+    
 
     function getComputerChoice() {
         let choices = ['Rock','Paper','Scissors'];
-        let result = (choices[Math.floor(Math.random()*3)]);
-        return result
+        let result = (choices[Math.floor(Math.random()*3)]).toLowerCase();
+        return result;
     }
 
-    console.log(getComputerChoice());
+    let playerSelection = 'rock';
+
+    function singleRound() {
+        // IF PLAYER AND COMPUTER HAVE SAME CHOICE ------------------------------
+        if(playerSelection.toLowerCase() === getComputerChoice()) {
+            return 'It is a tie!';
+        }
+        // IF PLAYERS PICKS ROCK ------------------------------------------------
+        else if(playerSelection.toLowerCase() === 'rock' && getComputerChoice() == 'scissors') {
+            return 'You Win, Rock beats Scissors!';
+        }
+        else if(playerSelection.toLowerCase() === 'rock' && getComputerChoice() == 'paper') {
+            return 'Computer wins, Paper beats rock'; 
+        }
+        // IF PLAYER PICKS PAPER ------------------------------------------------
+        else if(playerSelection.toLowerCase() === 'paper' && getComputerChoice() == 'scissors') {
+            return 'Computer wins, Scissors beats Paper';
+        }
+        else if(playerSelection.toLowerCase() === 'paper' && getComputerChoice() == 'rock') {
+            return 'You win, Paper beats rock!'; 
+        }
+        // IF PLAYER PICKS SCISSORS ----------------------------------------------
+        else if(playerSelection.toLowerCase() === 'scissors' && getComputerChoice() == 'rock') {
+            return 'Computer wins, Rock beats Scissors';
+        }
+        else if(playerSelection.toLowerCase() === 'scissors' && getComputerChoice() == 'paper') {
+            return 'You win, Scissors beats Paper!'; 
+        }
+        // IF PLAYER ENTERY ISNT RECOGNISED -------------------------------------
+        else {
+            return 'Entry not recongised, please enter Rock, Paper or Scissors to play'
+        }
+}
+        
+
+    console.log(singleRound());
 
 
 
@@ -22,4 +61,4 @@
     </script>
 
 </body>
-</html>s
+</html>
