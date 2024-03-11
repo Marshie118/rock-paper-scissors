@@ -10,48 +10,54 @@
     <p>Played in the console log</p>
     <script>
 
-    
+let playerSelection = 'Scissors';
+let player = playerSelection.toLowerCase();
 
+//getComputerChoice works correctly no undefine
     function getComputerChoice() {
-        let choices = ['Rock','Paper','Scissors'];
-        let result = (choices[Math.floor(Math.random()*3)]).toLowerCase();
+        let choices = ['Rock' , 'Paper', 'Scissors' ];
+        let result = (choices[Math.floor(Math.random() * choices.length)]).toLowerCase();
+        console.log('Computer picks',result);
         return result;
     }
+let computer = getComputerChoice();
 
-    let playerSelection = 'rock';
 
-    function singleRound() {
-        // IF PLAYER AND COMPUTER HAVE SAME CHOICE ------------------------------
-        if(playerSelection.toLowerCase() === getComputerChoice()) {
-            return 'It is a tie!';
+function singleRound(){
+    if(player === computer){
+        return 'It is a tie'
+    }
+    //Player has chosen rock --------------------------
+    else if(player === 'rock'){
+        if(computer === 'paper'){
+            return 'Computer wins, paper beats rock'
         }
-        // IF PLAYERS PICKS ROCK ------------------------------------------------
-        else if(playerSelection.toLowerCase() === 'rock' && getComputerChoice() == 'scissors') {
-            return 'You Win, Rock beats Scissors!';
-        }
-        else if(playerSelection.toLowerCase() === 'rock' && getComputerChoice() == 'paper') {
-            return 'Computer wins, Paper beats rock'; 
-        }
-        // IF PLAYER PICKS PAPER ------------------------------------------------
-        else if(playerSelection.toLowerCase() === 'paper' && getComputerChoice() == 'scissors') {
-            return 'Computer wins, Scissors beats Paper';
-        }
-        else if(playerSelection.toLowerCase() === 'paper' && getComputerChoice() == 'rock') {
-            return 'You win, Paper beats rock!'; 
-        }
-        // IF PLAYER PICKS SCISSORS ----------------------------------------------
-        else if(playerSelection.toLowerCase() === 'scissors' && getComputerChoice() == 'rock') {
-            return 'Computer wins, Rock beats Scissors';
-        }
-        else if(playerSelection.toLowerCase() === 'scissors' && getComputerChoice() == 'paper') {
-            return 'You win, Scissors beats Paper!'; 
-        }
-        // IF PLAYER ENTERY ISNT RECOGNISED -------------------------------------
         else {
-            return 'Entry not recongised, please enter Rock, Paper or Scissors to play'
+            return 'You Win, rock beats scissors!'
         }
+    }
+    //Player picks paper------------------------------
+    else if(player === 'paper'){
+        if(computer === 'rock'){
+            return 'You win, paper beats rock!'
+        }
+        else{
+            return 'Computer wins, scissors beats paper'
+        }
+    }
+    //Player picks scissors------------------------------
+    else if(player === 'scissors'){
+        if(computer === 'rock'){
+            return 'Computer wins, rock beats scissors'
+        }
+        else{
+            return 'You win, scissors beats paper!'
+        }
+    }
 }
-        
+
+//All the above works, no issues
+
 
     console.log(singleRound());
 
