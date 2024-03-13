@@ -9,9 +9,11 @@
     <h1>ROCK PAPER SCISSORS GAME</h1>
     <p>Played in the console log</p>
     <script>
-
-let playerSelection = 'Scissors';
-let player = playerSelection.toLowerCase();
+//player choice function-------------
+function playerSelection(){
+    let result = prompt("To play please type rock, paper or scissors! Then press ok;","");
+    return result.toLowerCase();
+}
 
 //getComputerChoice works correctly no undefine
     function getComputerChoice() {
@@ -20,48 +22,66 @@ let player = playerSelection.toLowerCase();
         console.log('Computer picks',result);
         return result;
     }
-let computer = getComputerChoice();
+//-------------------------------------------------------------
+const playerWin = 1;
+const computerWin =2;
+const draw = 3; 
 
-
+// Single round function-----------------------------------------
 function singleRound(){
+    let player = playerSelection();
+    let computer = getComputerChoice();
     if(player === computer){
-        return 'It is a tie'
+        return draw
     }
     //Player has chosen rock --------------------------
     else if(player === 'rock'){
         if(computer === 'paper'){
-            return 'Computer wins, paper beats rock'
+            return computerWin
         }
         else {
-            return 'You Win, rock beats scissors!'
+            return playerWin
         }
     }
     //Player picks paper------------------------------
     else if(player === 'paper'){
         if(computer === 'rock'){
-            return 'You win, paper beats rock!'
+            return playerWin
         }
         else{
-            return 'Computer wins, scissors beats paper'
+            return computerWin
         }
     }
     //Player picks scissors------------------------------
     else if(player === 'scissors'){
         if(computer === 'rock'){
-            return 'Computer wins, rock beats scissors'
+            return computerWin
         }
         else{
-            return 'You win, scissors beats paper!'
+            return playerWin
         }
     }
 }
 
 //All the above works, no issues
 
+function playGame(){
+    console.log(singleRound())
+}
 
-    console.log(singleRound());
+playGame();
+playGame();
+playGame();
+playGame();
+playGame();
 
 
+
+
+// for (i=0;i<=5;i++){
+//     showResult();
+// }
+    
 
 
     </script>
