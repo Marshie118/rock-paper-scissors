@@ -14,73 +14,135 @@ function playerSelection(){
     let result = prompt("To play please type rock, paper or scissors! Then press ok;","");
     return result.toLowerCase();
 }
-
-//getComputerChoice works correctly no undefine
+//getComputerChoice--------------
     function getComputerChoice() {
         let choices = ['Rock' , 'Paper', 'Scissors' ];
         let result = (choices[Math.floor(Math.random() * choices.length)]).toLowerCase();
-        console.log('Computer picks',result);
         return result;
     }
 //-------------------------------------------------------------
 const playerWin = 1;
 const computerWin =2;
-const draw = 3; 
-
-// Single round function-----------------------------------------
+const draw = 3;
+let na = 'not recognized';
+let playerScore = 0;
+let computerScore = 0;
+let roundCounter = 0;
+// ---------------------------------Single round function-----------------------------------------
 function singleRound(){
     let player = playerSelection();
-    let computer = getComputerChoice();
-    if(player === computer){
-        return draw
+   let computer = getComputerChoice();
+    
+    if(roundCounter === 6){
+    }
+    else if(player === computer){
+        console.log('Round',roundCounter);
+        console.log('You picked',player);
+        console.log('Computer picks',computer);
+        return draw;
+        
     }
     //Player has chosen rock --------------------------
     else if(player === 'rock'){
         if(computer === 'paper'){
-            return computerWin
+            console.log('Round',roundCounter);
+            console.log('You picked',player);
+            console.log('Computer picks',computer);
+            return computerWin;
+            
         }
         else {
+            console.log('Round',roundCounter);
+            console.log('You picked',player);
+            console.log('Computer picks',computer);
             return playerWin
+            
         }
     }
     //Player picks paper------------------------------
     else if(player === 'paper'){
         if(computer === 'rock'){
-            return playerWin
+            console.log('Round',roundCounter);
+            console.log('You picked',player);
+            console.log('Computer picks',computer);
+            return playerWin;
+            
         }
         else{
+            console.log('Round',roundCounter);
+            console.log('You picked',player);
+            console.log('Computer picks',computer);
             return computerWin
+            
         }
     }
     //Player picks scissors------------------------------
     else if(player === 'scissors'){
         if(computer === 'rock'){
-            return computerWin
+            console.log('Round',roundCounter);
+            console.log('You picked',player);
+            console.log('Computer picks',computer);
+            return computerWin;
+            
         }
         else{
-            return playerWin
+            console.log('Round',roundCounter);
+            console.log('You picked',player);
+            console.log('Computer picks',computer);
+            return playerWin;
+            
         }
+    }
+    else {
+        console.log('Round',roundCounter);
+        console.log(player,na);
+        return na;
     }
 }
 
-//All the above works, no issues
-
+//------------------------Play game function---------------------------
 function playGame(){
-    console.log(singleRound())
+    roundCounter ++;
+    let roundResult = singleRound();
+    if(roundResult === draw && roundCounter < 6){
+        console.log('It is a draw');
+    }
+    else if (roundResult === playerWin && roundCounter < 6){
+        playerScore ++;
+        console.log('you win this round');
+    }
+    else if(roundResult === computerWin && roundCounter < 6){
+        computerScore ++;
+        console.log('computer wins this round');
+    }
+    else if(roundResult === na){
+        console.log('Please type rock, paper or scissors');
+    }
+    else if(playerScore > computerScore && roundCounter === 6){
+        console.log('final results');
+        console.log('Your Score', playerScore);
+        console.log('Computer score', computerScore);
+        console.log('YOU ARE THE WINNER!');
+    }
+    else if(playerScore < computerScore && roundCounter === 6){
+        console.log('final results');
+        console.log('Your Score', playerScore);
+        console.log('Computer score', computerScore);
+        console.log('Computer wins, :( refresh to play again');
+    }
+    else if(playerScore === computerScore && roundCounter === 6){
+        console.log('final results');
+        console.log('Your Score', playerScore);
+        console.log('Computer score', computerScore);
+        console.log('It is a tie, refresh to play again!');
+    }
 }
 
-playGame();
-playGame();
-playGame();
-playGame();
-playGame();
+//----loop to run play game x 5--------------------
 
-
-
-
-// for (i=0;i<=5;i++){
-//     showResult();
-// }
+for (i=0;i<=5;i++){
+    playGame();
+}
     
 
 
