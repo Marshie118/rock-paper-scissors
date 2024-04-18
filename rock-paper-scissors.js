@@ -1,29 +1,31 @@
+let playerScore = 0;
+let computerScore = 0;
+let roundCounter = 0;
+let playerWin = 'you win';
+let computerWin = 'computer win';
+let draw ='its a tie';
+let na = 'na';
+const roundWinner = document.querySelector('#roundWinner');
+
 const choicesBtns = document.querySelectorAll(".choice");
 
 choicesBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        playGame(e.target.textContent.toLowerCase(), getComputerChoice());
+        singleRound(e.target.textContent.toLowerCase(), getComputerChoice());
     })
 
 });
-
 
 function getComputerChoice() {
         let choices = ['Rock' , 'Paper', 'Scissors' ];
         let result = (choices[Math.floor(Math.random() * choices.length)]).toLowerCase();
         return result;
     }
-let playerScore = 0;
-let computerScore = 0;
-let roundCounter = 0;
-
 function singleRound(player, computer){
     if(roundCounter === 6){
     }
-    else if(player === computer){
-        console.log('Round',roundCounter);
-        console.log('You picked',player);
-        console.log('Computer picks',computer);
+    else if(player === computer) {
+        roundWinner.textContent = 'Tie! '+'You picked '+player+', Computer picked '+computer+' also!';
         return draw;
         
     }
@@ -84,7 +86,6 @@ function singleRound(player, computer){
         return na;
     }
 }
-
 function playGame(a,b){
     roundCounter ++;
     let roundResult = singleRound(a,b);
