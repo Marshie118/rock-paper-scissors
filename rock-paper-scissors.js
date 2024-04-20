@@ -21,7 +21,7 @@ const restartGameButton = ()=>{
    choicesBtns.forEach((btn) =>
    btn.remove());
    const newBtn = document.createElement("button");
-   const btnText = document.createTextNode("Click to play again!");
+   const btnText = document.createTextNode("Click me to play again!");
    newBtn.appendChild(btnText);
    playerChoicesParent.appendChild(newBtn);
    newBtn.addEventListener("click",(e)=>
@@ -40,7 +40,7 @@ function singleRound(player, computer){
     roundCounter++;
     let playerWin = "Round - "+roundCounter+': You win this round! :) '+'You picked '+player+', Computer picked '+computer ;
     let computerWin = "Round - "+roundCounter+' Computer wins this round :( '+'You picked '+player+', Computer picked '+computer ;
-    let draw = "Round - "+roundCounter+' Tie! '+'You picked '+player+', Computer picked '+computer+' also!';
+    let draw = "Round - "+roundCounter+' Tie! '+'You picked '+player+', Computer picked '+computer+' aswell!';
     if(player === computer) {
         creatListResult(draw);
     }
@@ -83,8 +83,7 @@ const playGame = function(){
     choicesBtns.forEach((btn) => {
         btn.addEventListener('click', (e) => {  
         singleRound(e.target.textContent.toLowerCase(), getComputerChoice());
-        if(roundCounter === 5){
-            roundCounter = 5 - 5;
+        if(computerScore === 5 || playerScore === 5){
             restartGameButton();
             if(playerScore > computerScore){
                 roundWinner.textContent = 'You Win!';
