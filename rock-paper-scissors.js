@@ -1,9 +1,10 @@
 
 const roundWinner = document.querySelector('#roundWinner');
+const playerChoicesParent = document.querySelector("#playerChoices");
 const choicesBtns = document.querySelectorAll(".choice");
 const playerScoreDiv = document.querySelector(".player.score");
 const computerScoreDiv = document.querySelector(".computer.score");
-
+const roundResults = document.getElementById("resultsList");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -13,7 +14,19 @@ const creatListResult = function(a){
     const node = document.createElement("li");
     const textNode = document.createTextNode(a);
     node.appendChild(textNode);
-    document.getElementById("resultsList").appendChild(node);
+    roundResults.appendChild(node);
+}
+
+const restartGameButton = ()=>{
+   choicesBtns.forEach((btn) =>
+   btn.remove());
+   const newBtn = document.createElement("button");
+   const btnText = document.createTextNode("Click to play again!");
+   newBtn.appendChild(btnText);
+   playerChoicesParent.appendChild(newBtn);
+   newBtn.addEventListener("click",(e)=>
+    location.reload()
+);
 }
 
 
@@ -25,9 +38,9 @@ function getComputerChoice() {
 
 function singleRound(player, computer){
     roundCounter++;
-    let playerWin = roundCounter+': You win this round! :) '+'You picked '+player+', Computer picked '+computer ;
-    let computerWin = roundCounter+' Computer wins this round :( '+'You picked '+player+', Computer picked '+computer ;
-    let draw = roundCounter+' Tie! '+'You picked '+player+', Computer picked '+computer+' also!';
+    let playerWin = "Round - "+roundCounter+': You win this round! :) '+'You picked '+player+', Computer picked '+computer ;
+    let computerWin = "Round - "+roundCounter+' Computer wins this round :( '+'You picked '+player+', Computer picked '+computer ;
+    let draw = "Round - "+roundCounter+' Tie! '+'You picked '+player+', Computer picked '+computer+' also!';
     if(player === computer) {
         creatListResult(draw);
     }
@@ -40,8 +53,7 @@ function singleRound(player, computer){
             playerScore++;
             creatListResult(playerWin);
         }
-    }
-    //Player picks paper------------------------------
+    } //Player picks paper------------------------------
     else if(player === 'paper'){
         if(computer === 'rock'){
             playerScore++;
@@ -73,7 +85,7 @@ const playGame = function(){
         singleRound(e.target.textContent.toLowerCase(), getComputerChoice());
         if(roundCounter === 5){
             roundCounter = 5 - 5;
-            console.log('test');
+            restartGameButton();
             if(playerScore > computerScore){
                 roundWinner.textContent = 'You Win!';
             }
@@ -88,4 +100,3 @@ const playGame = function(){
 };
 
 playGame();
-
